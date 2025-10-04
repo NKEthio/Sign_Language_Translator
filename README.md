@@ -85,6 +85,28 @@ python sign_language_translator/scripts/infer.py \
 
 The model file stores the class list, chosen backbone, and image size for simpler reuse.
 
+### 5) Evaluate
+
+Evaluate accuracy on a held-out `ImageFolder` and optionally save a confusion matrix PNG.
+
+```bash
+python sign_language_translator/scripts/evaluate.py \
+  --model artifacts/model_best.pt \
+  --data_dir data/sign_mnist/test \
+  --save_cm artifacts/confusion.png --normalize_cm
+```
+
+### 6) Export to ONNX
+
+Export the best model to ONNX and perform a quick runtime check with onnxruntime.
+
+```bash
+python sign_language_translator/scripts/export_onnx.py \
+  --model artifacts/model_best.pt \
+  --out artifacts/model.onnx \
+  --opset 12 --dynamic_batch
+```
+
 ### Project Structure
 
 ```
@@ -98,6 +120,8 @@ sign_language_translator/
     convert_sign_mnist.py  # CSV -> ImageFolder converter
     train.py               # Training script (CLI)
     infer.py               # Inference for images and webcam
+    evaluate.py            # Evaluation with accuracy and confusion matrix
+    export_onnx.py         # Export trained model to ONNX
   data/                # (you create) datasets live here
   artifacts/           # saved checkpoints and best model
 ```
