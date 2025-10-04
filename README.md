@@ -11,14 +11,29 @@ If you are new to deep learning, follow the steps below end-to-end.
 
 ### 1) Setup
 
-1. Create a Python 3.10+ environment.
-2. Install dependencies:
+1. Clone the repository:
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/NKEthio/Sign_Language_Translator.git
+cd Sign_Language_Translator
 ```
 
-Note: For GPU training, install the CUDA-enabled PyTorch build as per the official instructions. The pinned versions in `requirements.txt` target recent PyTorch releases; on some systems you may need to adjust versions.
+2. Create a Python 3.10+ environment (recommended):
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install the package:
+
+```bash
+pip install -e .
+```
+
+This will install the `sign-language-translator` package along with all dependencies and command-line tools (`slt-train`, `slt-infer`, `slt-convert`).
+
+Note: For GPU training, ensure you have the CUDA-enabled PyTorch build. The requirements will install the latest PyTorch with CUDA support. If you need a specific CUDA version, install PyTorch separately before running `pip install -e .`.
 
 ### 2) Get Data
 
@@ -27,7 +42,7 @@ Note: For GPU training, install the CUDA-enabled PyTorch build as per the offici
 - Convert CSVs to images in an ImageFolder structure:
 
 ```bash
-python sign_language_translator/scripts/convert_sign_mnist.py \
+slt-convert \
   --train_csv /path/to/sign_mnist_train.csv \
   --test_csv /path/to/sign_mnist_test.csv \
   --out_dir data/sign_mnist
@@ -48,7 +63,7 @@ Optionally, create a small validation split by moving a few images from each `tr
 Train a classifier using a pretrained backbone. For Sign MNIST, pass `--grayscale` since images are 1-channel.
 
 ```bash
-python sign_language_translator/scripts/train.py \
+slt-train \
   --data_dir data/sign_mnist/train \
   --val_dir data/sign_mnist/test \
   --backbone resnet18 \
@@ -70,7 +85,7 @@ Key arguments:
 - Single image:
 
 ```bash
-python sign_language_translator/scripts/infer.py \
+slt-infer \
   --model artifacts/model_best.pt \
   --image path/to/hand.png
 ```
@@ -78,7 +93,7 @@ python sign_language_translator/scripts/infer.py \
 - Webcam (press `q` to quit):
 
 ```bash
-python sign_language_translator/scripts/infer.py \
+slt-infer \
   --model artifacts/model_best.pt \
   --webcam
 ```
@@ -88,19 +103,31 @@ The model file stores the class list, chosen backbone, and image size for simple
 ### Project Structure
 
 ```
-sign_language_translator/
-  sign_language_translator/
-    datasets.py        # ImageFolder/Numpy datasets with simple defaults
-    transforms.py      # Train/eval transforms
-    models.py          # Model factory with pretrained backbones
-    utils.py           # Training loop helpers and checkpoint I/O
-  scripts/
-    convert_sign_mnist.py  # CSV -> ImageFolder converter
-    train.py               # Training script (CLI)
-    infer.py               # Inference for images and webcam
-  data/                # (you create) datasets live here
-  artifacts/           # saved checkpoints and best model
+Sign_Language_Translator/
+├── sign_language_translator/
+│   └── sign_language_translator/
+│       ├── __init__.py       # Package exports
+│       ├── datasets.py       # ImageFolder/Numpy datasets
+│       ├── transforms.py     # Train/eval transforms
+│       ├── models.py         # Model factory with pretrained backbones
+│       ├── utils.py          # Training loop helpers and checkpoint I/O
+│       └── scripts/
+│           ├── convert_sign_mnist.py  # CSV -> ImageFolder converter
+│           ├── train.py               # Training script (CLI)
+│           └── infer.py               # Inference for images and webcam
+├── pyproject.toml       # Package configuration
+├── requirements.txt     # Dependencies
+├── LICENSE              # MIT License
+├── .gitignore          # Git ignore rules
+├── README.md           # This file
+├── data/               # (you create) datasets live here
+└── artifacts/          # saved checkpoints and best model
 ```
+
+After installation (`pip install -e .`), you can use the following commands from anywhere:
+- `slt-train` - Train a model
+- `slt-infer` - Run inference
+- `slt-convert` - Convert CSV datasets to images
 
 ### Notes and Tips
 
