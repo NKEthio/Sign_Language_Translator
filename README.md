@@ -1,15 +1,34 @@
-### Sign Language Translator (ASL Alphabet) — PyTorch
+# Sign Language Translator (ASL Alphabet)
 
-This repository provides a clear, well-commented baseline for recognizing static American Sign Language (ASL) alphabet hand signs using PyTorch. It includes:
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- Data conversion from the Kaggle Sign Language MNIST CSVs to an ImageFolder layout
-- A training pipeline with pretrained backbones (ResNet, MobileNet, EfficientNet)
-- Inference for single images and real-time webcam streams
-- Simple, easy-to-read code with explanatory comments
+A clear, well-commented PyTorch baseline for recognizing static American Sign Language (ASL) alphabet hand signs.
 
-If you are new to deep learning, follow the steps below end-to-end.
+## Features
 
-### 1) Setup
+- 📊 **Data conversion** from Kaggle Sign Language MNIST CSVs to ImageFolder layout
+- 🏋️ **Training pipeline** with pretrained backbones (ResNet, MobileNet, EfficientNet)
+- 🎯 **Inference support** for single images and real-time webcam streams
+- 📝 **Simple, readable code** with explanatory comments
+- 🚀 **Easy installation** with pip and command-line tools
+
+Perfect for beginners learning deep learning and computer vision!
+
+## Table of Contents
+
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Data Preparation](#data-preparation)
+- [Training](#training)
+- [Inference](#inference)
+- [Project Structure](#project-structure)
+- [Notes and Tips](#notes-and-tips)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Installation
 
 1. Clone the repository:
 
@@ -35,6 +54,8 @@ This will install the `sign-language-translator` package along with all dependen
 
 Note: For GPU training, ensure you have the CUDA-enabled PyTorch build. The requirements will install the latest PyTorch with CUDA support. If you need a specific CUDA version, install PyTorch separately before running `pip install -e .`.
 
+## Data Preparation
+
 ### 2) Get Data
 
 - Download Kaggle “Sign Language MNIST” CSVs (`sign_mnist_train.csv`, `sign_mnist_test.csv`).
@@ -58,6 +79,8 @@ data/sign_mnist/
 
 Optionally, create a small validation split by moving a few images from each `train/<LETTER>` folder into a `val/<LETTER>` folder.
 
+## Training
+
 ### 3) Train
 
 Train a classifier using a pretrained backbone. For Sign MNIST, pass `--grayscale` since images are 1-channel.
@@ -79,6 +102,8 @@ Key arguments:
 - `--backbone`: `resnet18`, `resnet34`, `mobilenet_v3_small`, `mobilenet_v3_large`, `efficientnet_b0`
 - `--image_size`: input resolution (default 224)
 - `--grayscale`: expect grayscale inputs (Sign MNIST)
+
+## Inference
 
 ### 4) Inference
 
@@ -129,13 +154,33 @@ After installation (`pip install -e .`), you can use the following commands from
 - `slt-infer` - Run inference
 - `slt-convert` - Convert CSV datasets to images
 
-### Notes and Tips
+## Notes and Tips
 
-- Sign MNIST covers 24 static letters; real-world ASL includes dynamic motions (J, Z) and word-level signs. Extending to video requires a temporal model (e.g., 3D CNN, TSN, TSM, or transformer over frame features).
-- For your own photo dataset, organize images as `ImageFolder` and omit `--grayscale` if using RGB.
-- If training is unstable, try a smaller learning rate (`--lr 3e-4`) or more epochs.
-- MobileNet and EfficientNet are good for faster webcam inference.
+- **Dataset scope**: Sign MNIST covers 24 static letters (excluding J and Z which require motion). Real-world ASL includes dynamic gestures and word-level signs.
+- **Extending to video**: For temporal gestures, consider 3D CNNs, temporal segment networks (TSN/TSM), or transformer-based models over frame features.
+- **Custom datasets**: For your own photos, organize them in ImageFolder format and omit `--grayscale` if using RGB images.
+- **Training stability**: If training is unstable, try a smaller learning rate (e.g., `--lr 3e-4`) or train for more epochs.
+- **Model selection**: MobileNet and EfficientNet variants are faster for real-time webcam inference.
 
-### License
+## Contributing
 
-This starter is provided as-is for educational purposes. Ensure dataset use complies with its original license.
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+- Setting up the development environment
+- Code style and formatting
+- Adding new features (backbones, datasets, augmentations)
+- Submitting pull requests
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- **Dataset**: Sign Language MNIST from Kaggle
+- **Framework**: PyTorch and torchvision
+- **Pretrained models**: ImageNet-pretrained weights from torchvision
+
+---
+
+**Educational Purpose**: This project is designed as a learning resource for computer vision and deep learning. For production ASL recognition systems, consider more sophisticated architectures and larger, more diverse datasets.
+
