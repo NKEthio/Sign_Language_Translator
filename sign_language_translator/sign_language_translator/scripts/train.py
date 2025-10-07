@@ -17,16 +17,35 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 
-from sign_language_translator.models import ModelConfig, build_classifier
-from sign_language_translator.transforms import build_eval_transforms, build_train_transforms
-from sign_language_translator.datasets import ImageFolderConfig, build_imagefolder_dataset
-from sign_language_translator.utils import (
-    Checkpoint,
-    evaluate,
-    save_checkpoint,
-    set_seed,
-    train_one_epoch,
-)
+try:
+    from sign_language_translator.models import ModelConfig, build_classifier
+    from sign_language_translator.transforms import build_eval_transforms, build_train_transforms
+    from sign_language_translator.datasets import ImageFolderConfig, build_imagefolder_dataset
+    from sign_language_translator.utils import (
+        Checkpoint,
+        evaluate,
+        save_checkpoint,
+        set_seed,
+        train_one_epoch,
+    )
+except ImportError:
+    # Fallback for when running script directly without package installation
+    import sys
+    from pathlib import Path
+    # Add parent directory to path
+    script_dir = Path(__file__).parent.parent
+    if str(script_dir) not in sys.path:
+        sys.path.insert(0, str(script_dir))
+    from models import ModelConfig, build_classifier
+    from transforms import build_eval_transforms, build_train_transforms
+    from datasets import ImageFolderConfig, build_imagefolder_dataset
+    from utils import (
+        Checkpoint,
+        evaluate,
+        save_checkpoint,
+        set_seed,
+        train_one_epoch,
+    )
 
 
 def parse_args() -> argparse.Namespace:

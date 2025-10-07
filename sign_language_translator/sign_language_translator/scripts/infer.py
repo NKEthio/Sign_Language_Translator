@@ -37,7 +37,17 @@ def load_model(model_path: Path):
     grayscale = bool(data.get("grayscale", False))
     image_size = tuple(data.get("image_size", (224, 224)))
 
-    from sign_language_translator.models import ModelConfig, build_classifier
+    try:
+        from sign_language_translator.models import ModelConfig, build_classifier
+    except ImportError:
+        # Fallback for when running script directly without package installation
+        import sys
+        from pathlib import Path
+        # Add parent directory to path
+        script_dir = Path(__file__).parent.parent
+        if str(script_dir) not in sys.path:
+            sys.path.insert(0, str(script_dir))
+        from models import ModelConfig, build_classifier
 
     model = build_classifier(ModelConfig(
         backbone=backbone, num_classes=len(classes) or 26, pretrained=False, in_channels=1 if grayscale else 3
