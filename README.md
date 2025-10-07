@@ -3,6 +3,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb)
 
 A clear, well-commented PyTorch baseline for recognizing static American Sign Language (ASL) alphabet hand signs.
 
@@ -16,9 +17,27 @@ A clear, well-commented PyTorch baseline for recognizing static American Sign La
 
 Perfect for beginners learning deep learning and computer vision!
 
+## Quick Start with Google Colab
+
+🚀 **Try it now without any installation!**
+
+Open our comprehensive Google Colab notebook to train and experiment with the Sign Language Translator directly in your browser:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb)
+
+The notebook includes:
+- ✅ Complete setup and installation
+- ✅ Automatic dataset download from Kaggle
+- ✅ Step-by-step training with pretrained models
+- ✅ Evaluation metrics and confusion matrix
+- ✅ Inference examples with visualizations
+- ✅ Model export and download
+
+Perfect for getting started in minutes with GPU acceleration!
+
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Quick Start with Google Colab](#quick-start-with-google-colab)
 - [Installation](#installation)
 - [Data Preparation](#data-preparation)
 - [Training](#training)
@@ -29,6 +48,10 @@ Perfect for beginners learning deep learning and computer vision!
 - [License](#license)
 
 ## Installation
+
+**Want to try it first?** Use our [Google Colab notebook](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb) - no installation required!
+
+### Local Installation
 
 1. Clone the repository:
 
