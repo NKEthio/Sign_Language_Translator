@@ -109,13 +109,13 @@ def build_classifier(config: ModelConfig) -> nn.Module:
         model = models.resnet18(weights=weights)
         in_features = model.fc.in_features
         model.fc = _replace_classifier(model.fc, in_features, config.num_classes, config.dropout)
-        stem = RepeatTo3Channels(config.in_channels)
         if config.in_channels != 3:
             # Prepend stem to resnet by overriding forward
+            model.stem = RepeatTo3Channels(config.in_channels)
             original_forward = model.forward
 
             def forward(x: torch.Tensor) -> torch.Tensor:  # type: ignore[misc]
-                x = stem(x)
+                x = model.stem(x)
                 return original_forward(x)
 
             model.forward = forward  # type: ignore[assignment]
@@ -125,12 +125,12 @@ def build_classifier(config: ModelConfig) -> nn.Module:
         model = models.resnet34(weights=weights)
         in_features = model.fc.in_features
         model.fc = _replace_classifier(model.fc, in_features, config.num_classes, config.dropout)
-        stem = RepeatTo3Channels(config.in_channels)
         if config.in_channels != 3:
+            model.stem = RepeatTo3Channels(config.in_channels)
             original_forward = model.forward
 
             def forward(x: torch.Tensor) -> torch.Tensor:  # type: ignore[misc]
-                x = stem(x)
+                x = model.stem(x)
                 return original_forward(x)
 
             model.forward = forward  # type: ignore[assignment]
@@ -140,12 +140,12 @@ def build_classifier(config: ModelConfig) -> nn.Module:
         model = models.mobilenet_v3_small(weights=weights)
         in_features = model.classifier[-1].in_features
         model.classifier[-1] = _replace_classifier(model.classifier[-1], in_features, config.num_classes, config.dropout)
-        stem = RepeatTo3Channels(config.in_channels)
         if config.in_channels != 3:
+            model.stem = RepeatTo3Channels(config.in_channels)
             original_forward = model.forward
 
             def forward(x: torch.Tensor) -> torch.Tensor:  # type: ignore[misc]
-                x = stem(x)
+                x = model.stem(x)
                 return original_forward(x)
 
             model.forward = forward  # type: ignore[assignment]
@@ -155,12 +155,12 @@ def build_classifier(config: ModelConfig) -> nn.Module:
         model = models.mobilenet_v3_large(weights=weights)
         in_features = model.classifier[-1].in_features
         model.classifier[-1] = _replace_classifier(model.classifier[-1], in_features, config.num_classes, config.dropout)
-        stem = RepeatTo3Channels(config.in_channels)
         if config.in_channels != 3:
+            model.stem = RepeatTo3Channels(config.in_channels)
             original_forward = model.forward
 
             def forward(x: torch.Tensor) -> torch.Tensor:  # type: ignore[misc]
-                x = stem(x)
+                x = model.stem(x)
                 return original_forward(x)
 
             model.forward = forward  # type: ignore[assignment]
@@ -170,12 +170,12 @@ def build_classifier(config: ModelConfig) -> nn.Module:
         model = models.efficientnet_b0(weights=weights)
         in_features = model.classifier[-1].in_features
         model.classifier[-1] = _replace_classifier(model.classifier[-1], in_features, config.num_classes, config.dropout)
-        stem = RepeatTo3Channels(config.in_channels)
         if config.in_channels != 3:
+            model.stem = RepeatTo3Channels(config.in_channels)
             original_forward = model.forward
 
             def forward(x: torch.Tensor) -> torch.Tensor:  # type: ignore[misc]
-                x = stem(x)
+                x = model.stem(x)
                 return original_forward(x)
 
             model.forward = forward  # type: ignore[assignment]
