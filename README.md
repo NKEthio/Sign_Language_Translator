@@ -3,17 +3,18 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Standalone.ipynb)
 
 A clear, well-commented PyTorch baseline for recognizing static American Sign Language (ASL) alphabet hand signs.
 
 ## Features
 
-- 📊 **Data conversion** from Kaggle Sign Language MNIST CSVs to ImageFolder layout
-- 🏋️ **Training pipeline** with pretrained backbones (ResNet, MobileNet, EfficientNet)
-- 🎯 **Inference support** for single images and real-time webcam streams
-- 📝 **Simple, readable code** with explanatory comments
-- 🚀 **Easy installation** with pip and command-line tools
+- 🚀 **Standalone Colab Notebook**: Everything in one file for easy learning.
+- 📊 **Data conversion** from Kaggle Sign Language MNIST CSVs to ImageFolder layout.
+- 🏋️ **Training pipeline** with pretrained backbones (ResNet, MobileNet, EfficientNet).
+- 🎯 **Inference support** for single images and real-time webcam streams.
+- 📝 **Simple, readable code** with explanatory comments.
+- 🚀 **Easy installation** with pip and command-line tools.
 
 Perfect for beginners learning deep learning and computer vision!
 
@@ -21,11 +22,15 @@ Perfect for beginners learning deep learning and computer vision!
 
 🚀 **Try it now without any installation!**
 
-Open our comprehensive Google Colab notebook to train and experiment with the Sign Language Translator directly in your browser:
+We provide two ways to run this on Google Colab:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb)
+1.  **[Standalone Version (Recommended for Beginners)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Standalone.ipynb)**: A single notebook containing all code, perfect for learning and quick experimentation.
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Standalone.ipynb)
 
-The notebook includes:
+2.  **[Package-based Version](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb)**: Uses the installed `sign-language-translator` package.
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb)
+
+Both notebooks include:
 - ✅ Complete setup and installation
 - ✅ Automatic dataset download from Kaggle
 - ✅ Step-by-step training with pretrained models
@@ -49,7 +54,7 @@ Perfect for getting started in minutes with GPU acceleration!
 
 ## Installation
 
-**Want to try it first?** Use our [Google Colab notebook](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Colab.ipynb) - no installation required!
+**Want to try it first?** Use our [Standalone Google Colab notebook](https://colab.research.google.com/github/NKEthio/Sign_Language_Translator/blob/main/Sign_Language_Translator_Standalone.ipynb) - no installation required!
 
 ### Local Installation
 
